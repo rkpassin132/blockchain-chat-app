@@ -11,3 +11,9 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
 ```
+
+### To run this in localnet
+
+- run local hardhat network and deploy contract
+- connect hardhat account by improting using private key
+- create account in Message app

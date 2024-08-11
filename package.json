@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "h-deploy": "npx hardhat run scripts/deploy.js --network localhost"
   },
   "dependencies": {
     "ethers": "^5.7.2",
