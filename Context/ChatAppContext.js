@@ -33,11 +33,19 @@ export const ChatAppProvider = ({ children }) => {
       if (!contract || !connectAccount) {
         throw new Error("Contract or account not found");
       }
-      console.log(contract);
-      console.log(typeof connectAccount, connectAccount);
       setAccount(connectAccount);
 
-      const userName = await contract.getUsername(connectAccount);
+      const userName = await contract
+        .getUsername(connectAccount)
+        .catch((error) => {
+          console.error("Failed to fetch username:", error);
+          return null;
+        });
+
+      if (!userName) {
+        setError(`Wrong network or user (${connectAccount}) not found.`);
+        return;
+      }
       setUserName(userName);
 
       const friendLists = await contract.getMyFriendList();
