@@ -63,7 +63,7 @@ const Chat = ({
         <div className={Style.Chat_box}>
           <div className={Style.Chat_box_left}>
             {friendMsg.map((el, i) => (
-              <div className={Style.Chat_box_Container}>
+              <div key={i + 1} className={Style.Chat_box_Container}>
                 {el.sender == chatData.address ? (
                   <div className={Style.Chat_box_left_title}>
                     <Image

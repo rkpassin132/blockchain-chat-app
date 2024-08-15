@@ -3,7 +3,7 @@ import Style from "../styles/allUser.module.css";
 import { ChatAppContext } from "../Context/ChatAppContext";
 import UserCard from "../components/UserCard/UserCard";
 
-const allUser = () => {
+const AllUser = () => {
   const { userName, userLists, addFriends } = useContext(ChatAppContext);
   const [userList, setUserList] = useState([]);
 
@@ -26,4 +26,4 @@ const allUser = () => {
   );
 };
 
-export default allUser;
+export default AllUser;
