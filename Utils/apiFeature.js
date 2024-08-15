@@ -50,7 +50,13 @@ export const connectingWithContract = async () => {
 };
 
 export const converTime = (time) => {
-  const newTime = new Date(time.toNumber());
-  const realTime = `${newTime.getHours()}/${newTime.getMinutes()}/${newTime.getSeconds()} Date: ${newTime.getDate()}/${newTime.getMonth()}/${newTime.getFullYear()}`;
-  return realTime;
+  const t = new Date(time.toNumber());
+  return t.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
 };

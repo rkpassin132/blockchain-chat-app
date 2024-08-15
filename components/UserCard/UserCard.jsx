@@ -8,6 +8,7 @@ const UserCard = ({ el, i, addFriends }) => {
     <div className={Style.UserCard}>
       <div className={Style.UserCard_box}>
         <Image
+          alt="user image"
           className={Style.UserCard_box_img}
           src={images[`image${i + 1}`]}
           height={100}
@@ -17,7 +18,7 @@ const UserCard = ({ el, i, addFriends }) => {
           <h3>{el.name}</h3>
           <p>{el.accountAddress.slice(0, 25)}..</p>
           <button
-            onlClick={() =>
+            onClick={() =>
               addFriends({ name: el.name, accountAddress: el.accountAddress })
             }
           >

@@ -24,6 +24,13 @@ export const ChatAppProvider = ({ children }) => {
 
   const router = useRouter();
 
+  const showError = (error) => {
+    setError(error);
+    setTimeout(() => {
+      setError("");
+    }, 4000);
+  };
+
   // fetch data time of page load
   const fetchData = async () => {
     try {
@@ -43,7 +50,7 @@ export const ChatAppProvider = ({ children }) => {
         });
 
       if (!userName) {
-        setError(`Wrong network or user (${connectAccount}) not found.`);
+        showError(`Wrong network or user (${connectAccount}) not found.`);
         return;
       }
       setUserName(userName);
@@ -55,7 +62,7 @@ export const ChatAppProvider = ({ children }) => {
       setUserLists(userList);
     } catch (error) {
       console.log(error);
-      setError("Please install and connect your wallet");
+      showError("Please install and connect your wallet");
     }
   };
 
@@ -70,31 +77,33 @@ export const ChatAppProvider = ({ children }) => {
       setFriendMsg(read);
     } catch (error) {
       console.log(error);
-      setError("Currently you have no message");
+      // showError("Currently you have no message");
     }
   };
 
   const createAccount = async ({ name, accountAddress }) => {
     try {
       if (!name && !accountAddress) {
-        return setError("Name and accountAddress, cannot be empty");
+        return showError("Name and accountAddress, cannot be empty");
       }
       const contract = await connectingWithContract();
       const getCreatedUser = await contract.createAccount(name);
       setLoading(true);
       await getCreatedUser.wait();
       setLoading(false);
+      window.location.reload();
     } catch (error) {
       console.log(error);
-      setError("Error while creating your account. Please reload browser");
+      showError("Error while creating your account. Please reload browser");
     }
   };
 
   const addFriends = async ({ name, accountAddress }) => {
     try {
-      if (!name && !accountAddress)
-        return setError("Please provide name and account address");
-      const addMyFriend = await ContractFactory.addFriend(accountAddress, name);
+      // if (!name && !accountAddress)
+      //   return showError("Please provide name and account address");
+      const contract = await connectingWithContract();
+      const addMyFriend = await contract.addFriend(accountAddress, name);
       setLoading(true);
       await addMyFriend.wait();
       setLoading(false);
@@ -102,22 +111,22 @@ export const ChatAppProvider = ({ children }) => {
       window.location.reload();
     } catch (error) {
       console.log(error);
-      setError("Something went wrong while adding friend");
+      showError("These users are already friends");
     }
   };
 
   const sendMessage = async ({ msg, address }) => {
     try {
-      if (!msg && !address) return setError("Please type your message");
+      if (!msg && !address) return showError("Please type your message");
       const contract = await connectingWithContract();
       const addMessage = await contract.sendMessage(address, msg);
       setLoading(true);
       await addMessage.wait();
       setLoading(false);
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.log(error);
-      setError("Please reload and try again");
+      showError("Please reload and try again");
     }
   };
 

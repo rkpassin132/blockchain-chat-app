@@ -12,10 +12,10 @@ const NavBar = () => {
   const menuItems = [
     { menu: "All Users", link: "allUser" },
     { menu: "CHAT", link: "/" },
-    { menu: "CONTACT", link: "/" },
-    { menu: "SETTING", link: "/" },
-    { menu: "FAQS", link: "/" },
-    { menu: "TERMS OF USE", link: "/" },
+    // { menu: "CONTACT", link: "/" },
+    // { menu: "SETTING", link: "/" },
+    // { menu: "FAQS", link: "/" },
+    // { menu: "TERMS OF USE", link: "/" },
   ];
 
   const [active, setActive] = useState(2);

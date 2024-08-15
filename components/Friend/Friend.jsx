@@ -8,7 +8,7 @@ import { ChatAppContext } from "../../Context/ChatAppContext";
 
 const Friend = () => {
   const {
-    sendMessages,
+    sendMessage,
     account,
     friendMsg,
     friendLists,
@@ -35,7 +35,7 @@ const Friend = () => {
         </div>
         <div className={Style.Friend_box_right}>
           <Chat
-            functionName={sendMessages}
+            functionName={sendMessage}
             readMessage={readMessage}
             friendMsg={friendMsg}
             account={account}
@@ -43,6 +43,7 @@ const Friend = () => {
             loading={loading}
             currentUserName={currentUserName}
             currentUserAddress={currentUserAddress}
+            readUser={readUser}
           />
         </div>
       </div>

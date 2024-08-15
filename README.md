@@ -14,6 +14,7 @@ npx hardhat run scripts/deploy.js
 
 ### To run this in localnet
 
+- If getting error while creating account, please clear activity and nonce data of account from Advance setting
 - run local hardhat network and deploy contract
 - connect hardhat account by improting using private key
 - create account in Message app
