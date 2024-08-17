@@ -1,17 +1,14 @@
 import React, { useState, useContext } from "react";
-import Image from "next/image";
 import Style from "./Friend.module.css";
-import images from "../../assets";
 import Card from "./Card/Card";
 import Chat from "./Chat/Chat";
 import { ChatAppContext } from "../../Context/ChatAppContext";
 
-const Friend = () => {
+const Friend = ({ friendLists }) => {
   const {
     sendMessage,
     account,
     friendMsg,
-    friendLists,
     readMessage,
     userName,
     loading,
@@ -23,15 +20,23 @@ const Friend = () => {
     <div className={Style.Friend}>
       <div className={Style.Friend_box}>
         <div className={Style.Friend_box_left}>
-          {friendLists.map((el, i) => (
-            <Card
-              key={i + 1}
-              el={el}
-              i={i}
-              readMessage={readMessage}
-              readUser={readUser}
-            />
-          ))}
+          {friendLists && friendLists?.length ? (
+            <>
+              {friendLists.map((el, i) => (
+                <Card
+                  key={i + 1}
+                  el={el}
+                  i={i}
+                  readMessage={readMessage}
+                  readUser={readUser}
+                />
+              ))}
+            </>
+          ) : (
+            <div className={Style.noUser}>
+              <p>You don't have any friend yet.</p>
+            </div>
+          )}
         </div>
         <div className={Style.Friend_box_right}>
           <Chat

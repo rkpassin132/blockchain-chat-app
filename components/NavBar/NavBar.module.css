@@ -9,6 +9,9 @@
   align-items: center;
   gap: 2rem;
 }
+.NavBar_box_left img {
+  filter: invert(1);
+}
 .NavBar_box_right {
   display: flex;
   align-items: center;

@@ -100,15 +100,13 @@ export const ChatAppProvider = ({ children }) => {
 
   const addFriends = async ({ name, accountAddress }) => {
     try {
-      // if (!name && !accountAddress)
-      //   return showError("Please provide name and account address");
+      if (!name) return showError("Al least enter your name");
       const contract = await connectingWithContract();
       const addMyFriend = await contract.addFriend(accountAddress, name);
       setLoading(true);
       await addMyFriend.wait();
       setLoading(false);
-      router.push("/");
-      window.location.reload();
+      fetchData();
     } catch (error) {
       console.log(error);
       showError("These users are already friends");

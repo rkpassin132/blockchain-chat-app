@@ -3,11 +3,18 @@ import { ChatAppContext } from "../Context/ChatAppContext";
 import { Filter, Friend } from "../components/index";
 
 const Home = () => {
-  // const { title } = useContext(ChatAppContext);
+  const { friendLists } = useContext(ChatAppContext);
+  const [friendListFiltered, setFriendListFiltered] = useState(friendLists);
+
+  useEffect(() => setFriendListFiltered(friendLists), [friendLists]);
+
   return (
     <div>
-      <Filter />
-      <Friend />
+      <Filter
+        setFriendListFiltered={setFriendListFiltered}
+        friendLists={friendLists}
+      />
+      <Friend friendLists={friendListFiltered} />
     </div>
   );
 };
