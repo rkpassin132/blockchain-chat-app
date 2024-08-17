@@ -22,17 +22,23 @@ const Chat = ({
   const [message, setMessage] = useState("");
   const [chatData, setChatData] = useState({ name: "", address: "" });
   const router = useRouter();
+  const { name, address } = router.query;
 
   useEffect(() => {
-    if (!router.isReady) return;
-    setChatData(router.query);
-  }, [router.isReady]);
+    if (name || address) {
+      setChatData((prevData) => ({
+        ...prevData,
+        name: name || prevData.name,
+        address: address || prevData.address,
+      }));
+    }
+  }, [name, address]);
 
   useEffect(() => {
     if (chatData.address) {
       reloadData();
     }
-  }, []);
+  }, [chatData.address]);
 
   const reloadData = () => {
     if (chatData.address) {
@@ -44,6 +50,7 @@ const Chat = ({
   const sendMessage = async () => {
     await functionName({ msg: message, address: chatData.address });
     reloadData();
+    setMessage("");
   };
 
   return (
@@ -68,68 +75,71 @@ const Chat = ({
       )}
 
       <div className={Style.Chat_box_box}>
-        <div className={Style.Chat_box}>
-          <div className={Style.Chat_box_left}>
-            {friendMsg.map((el, i) => (
-              <div key={i + 1} className={Style.Chat_box_Container}>
-                {el.sender == chatData.address ? (
-                  <div className={Style.Chat_box_left_title}>
-                    <Image
-                      src={images.accountName}
-                      alt="image"
-                      width={50}
-                      height={50}
-                    />
-                    <span>
-                      {chatData.name} {""}
-                      <small>Time: {converTime(el.timestamp)}</small>
-                    </span>
-                  </div>
-                ) : (
-                  <div className={Style.Chat_box_left_title}>
-                    <Image
-                      src={images.accountName}
-                      alt="image"
-                      width={30}
-                      height={30}
-                    />
-                    <span>{userName}</span>
-                  </div>
-                )}
-                <div className={Style.Chat_box_left_message_box}>
-                  <p key={i + 1}>{el.msg}</p>
-                  <div className={Style.Chat_box_left_message_box_time}>
-                    <small>{converTime(el.timestamp)}</small>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {currentUserName && currentUserAddress ? (
-          <div className={Style.Chat_box_send}>
-            <div className={Style.Chat_box_send_img}>
-              <Image src={images.smile} alt="smile" width={40} height={40} />
-              <input
-                type="text"
-                placeholder="type your message"
-                onChange={(e) => setMessage(e.target.value)}
-              />
-              <Image src={images.file} alt="file" width={40} height={40} />
-              {loading == true ? (
-                <Loader />
-              ) : (
-                <Image
-                  src={images.send}
-                  alt="send"
-                  width={40}
-                  height={40}
-                  onClick={() => sendMessage()}
-                />
-              )}
+          <>
+            <div className={Style.Chat_box}>
+              <div className={Style.Chat_box_left}>
+                {friendMsg.map((el, i) => (
+                  <div key={i + 1} className={Style.Chat_box_Container}>
+                    {el.sender == chatData.address ? (
+                      <div className={Style.Chat_box_left_title}>
+                        <Image
+                          src={images.accountName}
+                          alt="image"
+                          width={50}
+                          height={50}
+                        />
+                        <span>
+                          {chatData.name} {""}
+                          <small>Time: {converTime(el.timestamp)}</small>
+                        </span>
+                      </div>
+                    ) : (
+                      <div className={Style.Chat_box_left_title}>
+                        <Image
+                          src={images.accountName}
+                          alt="image"
+                          width={30}
+                          height={30}
+                        />
+                        <span>{userName}</span>
+                      </div>
+                    )}
+                    <div className={Style.Chat_box_left_message_box}>
+                      <p key={i + 1}>{el.msg}</p>
+                      <div className={Style.Chat_box_left_message_box_time}>
+                        <small>{converTime(el.timestamp)}</small>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+
+            <div className={Style.Chat_box_send}>
+              <div className={Style.Chat_box_send_img}>
+                <Image src={images.smile} alt="smile" width={40} height={40} />
+                <input
+                  type="text"
+                  placeholder="type your message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                />
+                <Image src={images.file} alt="file" width={40} height={40} />
+                {loading == true ? (
+                  <Loader />
+                ) : (
+                  <Image
+                    src={images.send}
+                    alt="send"
+                    width={40}
+                    height={40}
+                    onClick={() => sendMessage()}
+                  />
+                )}
+              </div>
+            </div>
+          </>
         ) : (
           ""
         )}

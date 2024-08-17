@@ -7,8 +7,7 @@
 .Chat_box {
   display: grid;
   grid-template-columns: 1fr;
-  max-height: 50vh;
-  min-width: 10vh;
+  height: 50vh;
   margin: 0 auto;
   width: 80%;
   overflow-y: scroll;

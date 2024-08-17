@@ -6,12 +6,11 @@ import Card from "./Card/Card";
 import Chat from "./Chat/Chat";
 import { ChatAppContext } from "../../Context/ChatAppContext";
 
-const Friend = () => {
+const Friend = ({ friendLists }) => {
   const {
     sendMessage,
     account,
     friendMsg,
-    friendLists,
     readMessage,
     userName,
     loading,
