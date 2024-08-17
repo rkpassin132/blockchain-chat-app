@@ -2,5 +2,5 @@
 import chatAppJSONProd from "../Context/ChatAppAbi.json"; // Production Testnet deployed ABI
 
 export const enviroment = process.env.NEXT_PUBLIC_ENVIRONMENT;
-export const ChatAppAddress = "0xdf2cBf666d4cffBC2F373C5068C72E607aFF9531";
-export const ChatAppABI = enviroment == chatAppJSONProd;
+export const ChatAppAddress = process.env.NEXT_PUBLIC_CHAT_APP_ADDRESS;
+export const ChatAppABI = chatAppJSONProd;
