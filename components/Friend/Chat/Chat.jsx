@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import NoUser from "../../../assets/nousser.svg";
 import Link from "next/link";
 import Style from "./Chat.module.css";
 import images from "../../../assets";
@@ -56,7 +57,14 @@ const Chat = ({
           </div>
         </div>
       ) : (
-        ""
+        <div className={Style.noUser}>
+          <Image src={NoUser} alt="User not found" />
+          <h2>User not available</h2>
+          <p>
+            Be the first to join! Create an account now and start interacting
+            with the community.
+          </p>
+        </div>
       )}
 
       <div className={Style.Chat_box_box}>

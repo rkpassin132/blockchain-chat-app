@@ -19,13 +19,9 @@ const Filter = () => {
           </div>
         </div>
         <div className={Style.Filter_box_right}>
-          <button>
-            <Image src={images.clear} alt="clear" width={20} height={20} />
-            CLEAR CHAT
-          </button>
           <button onClick={() => setAddFriend(true)}>
             <Image src={images.user} alt="add user" width={20} height={20} />
-            ADD FRIEDN
+            ADD FRIEND
           </button>
         </div>
       </div>

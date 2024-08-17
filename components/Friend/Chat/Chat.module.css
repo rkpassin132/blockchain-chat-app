@@ -7,7 +7,8 @@
 .Chat_box {
   display: grid;
   grid-template-columns: 1fr;
-  height: 50vh;
+  max-height: 50vh;
+  min-width: 10vh;
   margin: 0 auto;
   width: 80%;
   overflow-y: scroll;
@@ -68,6 +69,28 @@
 .Chat_user_info_box h4,
 .Chat_user_info_box p {
   line-height: 0;
+}
+
+.noUser {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
+.noUser img {
+  color: transparent;
+  width: 300px;
+  height: 216px;
+}
+.noUser h2,
+.noUser p {
+  margin: 0;
+  max-width: 500px;
+  text-align: center;
+  line-height: 20px;
+  font-family: math;
 }
 
 @media only screen and (max-width: 35em) {
