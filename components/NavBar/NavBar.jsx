@@ -12,7 +12,7 @@ const NavBar = () => {
   const menuItems = [
     { menu: "All Users", link: "allUser" },
     { menu: "CHAT", link: "/" },
-    // { menu: "CONTACT", link: "/" },
+    { menu: "ABOUT US", link: "/aboutUs" },
     // { menu: "SETTING", link: "/" },
     // { menu: "FAQS", link: "/" },
     // { menu: "TERMS OF USE", link: "/" },

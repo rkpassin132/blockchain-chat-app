@@ -1,0 +1,18 @@
+/* styles/AboutUs.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 2rem 6rem;
+}
+.detail ol {
+  font-size: 18px;
+  margin-bottom: 2rem;
+  line-height: 26px;
+  letter-spacing: 0.3px;
+  color: #ffffffed;
+}
+.detail ol li {
+  margin-bottom: 12px;
+}
