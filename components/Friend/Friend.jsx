@@ -1,7 +1,5 @@
 import React, { useState, useContext } from "react";
-import Image from "next/image";
 import Style from "./Friend.module.css";
-import NoUser from "../../assets/nousser.svg";
 import Card from "./Card/Card";
 import Chat from "./Chat/Chat";
 import { ChatAppContext } from "../../Context/ChatAppContext";
